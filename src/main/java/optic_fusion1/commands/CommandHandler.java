@@ -42,16 +42,18 @@ public class CommandHandler {
     }
 
     public boolean executeCommand(CommandSender sender, String message) {
-        if (message.equals("/")) {
+        if (message.isEmpty() || message.isBlank()) {
             sender.sendMessage("You did not enter a command name");
             return false;
         }
+
         try {
             List<String> args = ShellParser.parseString(message);
             String commandLabel = args.get(0);
             args.remove(0);
             Command command = getCommand(commandLabel);
             if (command == null) {
+                sender.sendMessage("Unknown command");
                 return false;
             }
             if (!command.checkArgLength(args)) {

@@ -16,8 +16,11 @@
  */
 package optic_fusion1.commands.command;
 
+import optic_fusion1.packets.IPacket;
+
 public interface CommandSender {
 
   public abstract void sendMessage(String message);
+  public abstract void sendPacket(final IPacket packet);
 
 }
